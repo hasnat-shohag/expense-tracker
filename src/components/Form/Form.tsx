@@ -5,15 +5,20 @@ const Form = () => {
 		<>
 			<form>
 				<div className="mb-3">
-					<label htmlFor="name" className="mb-3">
+					<label htmlFor="name" className="form-label">
 						Name
 					</label>
-					<br />
+					<input id="name" type="text" className="border-black" />
 				</div>
 				<div>
-					<input name="Name" id="name" className="border-black" />
+					<label htmlFor="name" className="form-label">
+						Age
+					</label>
+					<input id="name" type="text" className="border-black" />
 				</div>
-				<button type="submit" className="p-10">Submit</button>
+				<button type="submit" className="p-5">
+					Submit
+				</button>
 			</form>
 		</>
 	);
