@@ -1,5 +1,5 @@
 // import Form from "./components/Form";
-import Form from "./duplicate_form/components/Form";
+import Form from "./components/Form";
 const App = () => {
 	return (
 		<div className="m-10">
