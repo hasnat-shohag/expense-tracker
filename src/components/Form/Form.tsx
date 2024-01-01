@@ -3,8 +3,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-	name: z.string().min(3, {message: "Name must be at least 3 characters"}),
-	age: z.number({ invalid_type_error: "Age must be at least 18" }).min(18, {message: "Age must be at least 18"}),
+	name: z.string().min(3, { message: "Name must be at least 3 characters" }),
+	age: z
+		.number({ invalid_type_error: "Age must be at least 18" })
+		.min(18, { message: "Age must be at least 18" }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -13,7 +15,7 @@ const Form = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = useForm<FormData>({ resolver: zodResolver(schema) });
 
 	const onSubmit = (data: FieldValues) => {
@@ -49,7 +51,12 @@ const Form = () => {
 			</div>
 			<button
 				type="submit"
-				className="text-xl px-5 py-2 border-0 mt-2 rounded-lg ring-1 ring-inset ring-gray-300 hover:bg-cyan-400 hover:text-white"
+				disabled={!isValid}
+				className={
+					isValid
+						? "text-xl px-5 py-2 border-0 mt-2 rounded-lg ring-1 ring-inset ring-gray-300 hover:bg-cyan-400 hover:text-white"
+						: "text-xl px-5 py-2 border-0 mt-2 rounded-lg ring-1 ring-inset ring-gray-300 bg-gray-200 text-gray-400"
+				}
 			>
 				Submit
 			</button>
